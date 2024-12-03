@@ -1,4 +1,3 @@
-
 # Constantes para indexar os tuplos:
 NAME,DATE,OPEN,MAX,MIN,CLOSE,VOLUME = 0,1,2,3,4,5,6
 
@@ -34,26 +33,32 @@ def loadStockFile(filename):
 
 def totalVolume(lst):
     totVol = {}
-    # Complete ...
-
+    for a in lst:
+        totVol[a[0]]=a[6]
     return totVol
 
 def maxValorization(lst):
     vMax = {}
-    # Complete ...
+    for a in lst:
+        vMax[a[1]]=(a[0],a[5]-a[2]-1)
+
 
     return vMax
 
 def stocksByDateByName(lst):
     dic = {}
-    # Complete ...
-
+    for a in lst:
+        if a[1] not in dic:
+            dic[a[1]] = {}
+        dic[a[1]][a[0]] = (a[2], a[3], a[4], a[5], a[6])
     return dic
 
 def portfolioValue(stocks, portfolio, date):
     assert date in stocks
     val = 0.0
-    # Complete ...
+    for name, quantity in portfolio.items():
+        if (name,date) in stocks:
+            val += stocks[(name, date)[3]*quantity]
 
     return val
 

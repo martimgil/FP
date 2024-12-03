@@ -8,7 +8,6 @@ sec = 360//20
 tan = y/x
 ang = math.atan(tan)
 ang = math.degrees(ang)
-
 raio = math.sqrt(x**2 + y**2)
 
 

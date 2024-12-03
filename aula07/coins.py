@@ -8,32 +8,50 @@ COINS = [200, 100, 50, 20, 10, 5, 2, 1]
 
 def value(bag):
     """Return total amount in a bag."""
-    ...
+    v = 0
+    for a in bag:
+        v += a*bag[a]
 
+    return v
 
 def transfer1coin(bag1, c, bag2):
     """Try to transfer one coin of value c from bag1 to bag2.
     If possible, transfer coin and return True, otherwise return False."""
-    ...
-
-
-def transfer(bag1, amount, bag2):
-    """Try to transfer an amount from bag1 to bag2.
-    If possible, transfer coins and return True,
-    otherwise, return False and leave bags with same values."""
-    if amount == 0:
+    if c in bag1:
+        bag2[c] = bag1[c]
+        bag1.pop(c)
         return True
-    if value(bag1) < amount:
+    else:
         return False
-    ...
-            
+
+
+#def transfer(bag1, amount, bag2):
+ #   """"Try to transfer an amount from bag1 to bag2.
+  #  If possible, transfer coins and return True,
+   # otherwise, return False and leave bags with same values."""
+    #count = 0
+    #if amount == 0:
+     #   return True
+    #if value(bag1) < amount:
+     #   return False
+    #for i in bag1:
+     #   for a in bag1[i]
+
+
 
 def strbag(bag):
     """Return a string representing the contents of a bag.""" 
     # You may want to change this to produce a more user-friendly
     # representation such as "4x200+3x50+1x5+3x1=958".
-    return str(bag)
-    ...
+    v=0
+    s=""
+    for a in bag:
+        s+="+"
+        v += a*bag[a]
+        s+= "{}x{}".format(a,bag[a])
+    s+="={}".format(v)
+    return s
+
 
 
 def main():
@@ -41,7 +59,7 @@ def main():
     bag1 = {1: 4, 2: 0, 5:1, 10: 0, 20: 5, 50: 4, 100: 2, 200: 1}
     bag2 = {}
 
-    # Test the value function.
+     #Test the value function.
     assert value({}) == 0
     assert value({1:7, 5:2, 20:4, 100:1}) == 197
 
@@ -64,11 +82,11 @@ def main():
     print("bag1:", strbag(bag1))    # bag1: 1x200+2x100+4x50+3x20+1x5+4x1=669
     print("bag2:", strbag(bag2))    # bag2: 2x20=40
 
-    print(transfer(bag1, 157, bag2))        # True (should be easy)
+    #print(transfer(bag1, 157, bag2))        # True (should be easy)
     print("bag1:", strbag(bag1))    # bag1: 1x200+1x100+3x50+3x20+2x1=512
     print("bag2:", strbag(bag2))    # bag2: 1x100+1x50+2x20+1x5+2x1=197
 
-    print(transfer(bag1, 60, bag2)) # not easy, but possible...
+    #print(transfer(bag1, 60, bag2)) # not easy, but possible...
     print("bag1:", strbag(bag1))
     print("bag2:", strbag(bag2))
 

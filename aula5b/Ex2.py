@@ -15,14 +15,17 @@ def matchesPattern(s, pattern):
     if len(s) != len(pattern):
         return False
     for i in range(len(s)):
-        if pattern[i] != '?' and s[1] != pattern[i]:
+        if pattern[i] != '?' and s[i] != pattern[i]:
             return False
     return True
+
+
 def filterPattern(lst,pattern):
+    similar=[]
     for word in lst:
         word.lower()
         result = matchesPattern(word, pattern)
-        similar=[]
+
         if result == True:
             similar.append(word)
     return similar

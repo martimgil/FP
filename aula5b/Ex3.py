@@ -7,11 +7,9 @@ def matcols(M):
 
 # Complete a função para devolver uma matriz com m×n zeros.
 def matzeros(m, n):
-    M = n * [0]
-    M1=[]
-    for i in  range(m):
-        M1.append(M)
-        M = M1
+    M = []
+    for i in range(m):
+        M.append([0] * n)
     return M
 
 def matzerosTEST(m, n):

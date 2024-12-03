@@ -1,10 +1,10 @@
-
 # Esta função implementa g(x) = 8 - x³
 def g(x):
     return 8 - x**3
 
 def p(x):
     return ((x**2) + 2*x * 3)
+
 def main():
     # Mostra alguns valores da função g:
     print("g(1) =", g(1))
