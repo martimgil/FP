@@ -3,26 +3,35 @@ import bisect
 with open("wordlist.txt") as f:
     words = f.read().splitlines()
 
-def count_words(prefix, words):
+def count_words_with_prefix(prefix, words):
     start = bisect.bisect_left(words, prefix)
-    end = bisect.bisect_right(words, prefix + 'z')
-    return end - start, start, end
+    end = bisect.bisect_left(words, prefix[:-1] + chr(ord(prefix[-1]) + 1))
+    return end - start
 
-# Contar palavras que começam com "ea"
-ea_count, ea_start, ea_end = count_words("ea", words)
-print(f"Palavras que começam com 'ea': {ea_count}")
+def first_letter_after(prefix, char, words):
+    start = bisect.bisect_left(words, prefix)
+    for word in words[start:]:
+        if len(word) > len(prefix) and word[len(prefix)] > char:
+            return word[len(prefix)]
+    return None
 
-# Contar palavras que começam com "truo"
-truo_count, truo_start, truo_end = count_words("truo", words)
-print(f"Palavras que começam com 'truo': {truo_count}")
+def possible_next_letters(prefix, words):
+    start = bisect.bisect_left(words, prefix)
+    end = bisect.bisect_right(words, prefix + chr(255))
+    next_letters = set()
+    for word in words[start:end]:
+        if len(word) > len(prefix):
+            next_letters.add(word[len(prefix)])
+    return sorted(next_letters)
 
-# Encontrar a primeira letra maior do que 'o' após "tru"
-tru_start = bisect.bisect_right(words, "tru")
-if tru_start < len(words):
-    next_word = words[tru_start]
-    for char in next_word:
-        if char > 'o':
-            print(f"A primeira letra maior do que 'o' após 'tru' é: {char}")
-            break
-else:
-    print("Não há palavras após 'tru'")
+# Example usage
+prefix_ea = "ea"
+prefix_truo = "truo"
+prefix_tru = "tru"
+
+print(f"Number of words starting with '{prefix_ea}': {count_words_with_prefix(prefix_ea, words)}")
+print(f"Number of words starting with '{prefix_truo}': {count_words_with_prefix(prefix_truo, words)}")
+print(f"First letter after '{prefix_tru}' greater than 'o': {first_letter_after(prefix_tru, 'o', words)}")
+
+prefix = "pre"
+print(f"Possible next letters after '{prefix}': {possible_next_letters(prefix, words)}")

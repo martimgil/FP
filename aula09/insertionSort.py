@@ -1,50 +1,46 @@
-
-# This function sorts a list (like list.sort)
-# using the insertion sort algorithm.
-# Modify it to accept a key= keyword argument that works like in list.sort.
-
-def insertionSort(lst):
-    # Traverse elements starting at position 1
+def insertionSort(lst, key=None):
+    # Se nenhuma função key for fornecida, use a função identidade
+    if key is None:
+        key = lambda x: x
+    
+    # Percorre a lista a partir do segundo elemento
     for i in range(1, len(lst)):
-        # We know that lst[:i] is sorted
-        x = lst[i]    # x is the element to insert next
-        # Elements in lst[:i] that are > x must move one position ahead
+        # Sabemos que lst[:i] está ordenada
+        x = lst[i]  # x é o elemento a ser inserido
+        kx = key(x)  # kx é a chave do elemento a ser inserido
+        # Elementos em lst[:i] que são > kx devem ser movidos uma posição à frente
         j = i - 1
-        while j >= 0 and lst[j] > x:
+        while j >= 0 and key(lst[j]) > kx:
             lst[j + 1] = lst[j]
             j -= 1
-        # Then put x in the last emptied slot
+        # Insere x na última posição vazia
         lst[j + 1] = x
-        # Now we know that lst[:i+1] is sorted
-    return
-
+        # Agora sabemos que lst[:i+1] está ordenada
+    return lst
 
 def main():
-    # Original list
+    # Lista original
     lst0 = ["paulo", "augusto", "maria", "paula", "bernardo", "tito"]
     print("lst0", lst0)
 
-    # sort in lexicographic order:
+    # Ordenar em ordem lexicográfica:
     lst = lst0.copy()
     insertionSort(lst)
     print("lst1", lst)
     assert lst == sorted(lst0)
 
-    # sort by length (requires key= argument):
+    # Ordenar por comprimento (requer argumento key):
     lst = lst0.copy()
-    insertionSort(lst, key=len)
+    insertionSort(lst, key=lambda x: len(x))
     print("lst2", lst)
     assert lst == sorted(lst0, key=len)
 
-    # sort by length, than lexicographic order:
+    # Ordenar por comprimento, depois em ordem lexicográfica:
     myorder = lambda s: (len(s), s)
     lst = lst0.copy()
     insertionSort(lst, key=myorder)
     print("lst3", lst)
     assert lst == sorted(lst0, key=myorder)
 
-    print("All tests OK!")
-
 if __name__ == "__main__":
     main()
-

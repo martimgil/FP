@@ -15,8 +15,12 @@ def printDirFiles(d):
 
 
 def findFiles(path, ext):
-    # Complete...
-    ...
+    # Complete...   
+    lst=[]
+    if os.path.isfile(path):
+        return findFiles(path, ext)
+    else:
+        lst.append(ext)        
 
 
 def main():
