@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="Submission" content="9WZP7BIQOGK7CIXMFHN86FDLU"/>
+<meta name="Time" content="2025-01-12T19:19:25Z"/>
+<meta name="ID" content="countdigits"/>
+<meta name="User" content="huvu-uqim-adus-vido"/>
+<meta name="Problem" content="ext/2011071803d5s8ty223ll02lb716rp0ct2c"/>
+<meta name="Elapsed" content="2452 ms"/>
+<style type="text/css">
+.header {font-weight: bold; font-size: 1.2em; }
+.item {font-weight: bold;}
+.pass {color: green;}
+.fail {color: red;}
+.note {color: blue; font-weight: bold;}
+table.file td {padding-right: 1em; background: #FFF; }
+.linenumber {color: gray;}
+.footnote {font-size: 0.7em;}
+table {font-size: 0.9em;}
+td, th { background: #EEE; margin: 0.5em; padding: 0.25em;}
+table.output td {vertical-align: top;}
+div.footnotes { border-top: 1px solid gray; padding-top: 0.5em; }
+</style>
+<title>Report</title>
+</head>
+<body>
+<p class="header run">Running countdigits.py</p>
+<div class="run">
+<p class="item">Test 1</p>
+<pre class="output"><b>23 mil 456</b>
+str: '23 mil 456'
+result: 5
+</pre>
+<span class="pass">pass </span><p class="item">Test 2</p>
+<pre class="output"><b>23.49 km</b>
+str: '23.49 km'
+result: 4
+</pre>
+<span class="pass">pass </span><p class="item">Test 3</p>
+<pre class="output"><b>nada</b>
+str: 'nada'
+result: 0
+</pre>
+<span class="pass">pass </span></div>
+<p class="header studentFiles">Submitted files</p>
+<div class="studentFiles">
+<p class="caption">countdigits.py:</p>
+<pre class="output">"""
+Crie uma função que conte quantos dígitos há numa dada string.
+Por exemplo:  countDigits("23 mil 456") deve devolver 5.
+Sugestão: o método isdigit verifica se uma string só tem dígitos,
+e.g., "2".isdigit() -&gt; True.
+"""
+
+# Defina a função aqui.
+def countDigits(str):
+   count=0
+   for element in str:
+      if element.isdigit():
+         count+=1
+   return count
+
+
+def main():
+   str = input()
+   # Não deve precisar de mudar nada aqui...
+   
+   print("str:", repr(str))
+   print("result:", countDigits(str) )
+
+if __name__ == "__main__":
+   main()
+
+
+</pre>
+</div>
+<p class="header score">Score</p>
+<div class="score">
+<p class="score">3/3</p>
+</div>
+<div class="footnotes"><div class="footnote">2025-01-12T19:19:25Z</div>
+</div>
+</body></html>

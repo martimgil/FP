@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="Submission" content="E9RRJDG5OWZYZ12JQD8DRMLZA"/>
+<meta name="Time" content="2025-01-12T19:18:00Z"/>
+<meta name="ID" content="allmatches"/>
+<meta name="User" content="ejow-cogi-ijid-yzog"/>
+<meta name="Problem" content="ext/2011071540ngx1cg2hdlcn1h9om6rkk0yp"/>
+<meta name="Elapsed" content="809 ms"/>
+<style type="text/css">
+.header {font-weight: bold; font-size: 1.2em; }
+.item {font-weight: bold;}
+.pass {color: green;}
+.fail {color: red;}
+.note {color: blue; font-weight: bold;}
+table.file td {padding-right: 1em; background: #FFF; }
+.linenumber {color: gray;}
+.footnote {font-size: 0.7em;}
+table {font-size: 0.9em;}
+td, th { background: #EEE; margin: 0.5em; padding: 0.25em;}
+table.output td {vertical-align: top;}
+div.footnotes { border-top: 1px solid gray; padding-top: 0.5em; }
+</style>
+<title>Report</title>
+</head>
+<body>
+<p class="header call">Calling with Arguments</p>
+<div class="call">
+<table class="run">
+<tr><th>&#160;</th><th>Name</th><th>Arguments</th><th>Actual</th><th>Expected</th></tr>
+<tr><td><span class="pass">pass </span></td>
+<td><pre>allMatches</pre></td>
+<td><pre>["A", "B"]</pre></td>
+<td><pre>[('A', 'B'), ('B', 'A')]
+</pre></td>
+<td><pre>[('A', 'B'), ('B', 'A')]
+</pre></td>
+</tr>
+<tr><td><span class="pass">pass </span></td>
+<td><pre>allMatches</pre></td>
+<td><pre>["A", "B", "C"]</pre></td>
+<td><pre>[('A', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'C'), ('C', 'A'), ('C', 'B')]
+</pre></td>
+<td><pre>[('A', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'C'), ('C', 'A'), ('C', 'B')]
+</pre></td>
+</tr>
+<tr><td><span class="pass">pass </span></td>
+<td><pre>allMatches</pre></td>
+<td><pre>["A", "B", "C", "D"]</pre></td>
+<td><pre>[('A', 'B'), ('A', 'C'), ('A', 'D'), ('B', 'A'), ('B', 'C'), ('B', 'D'), ('C', 'A'), ('C', 'B'), ('C', 'D'), ('D', 'A'), ('D', 'B'), ('D', 'C')]
+</pre></td>
+<td><pre>[('A', 'B'), ('A', 'C'), ('A', 'D'), ('B', 'A'), ('B', 'C'), ('B', 'D'), ('C', 'A'), ('C', 'B'), ('C', 'D'), ('D', 'A'), ('D', 'B'), ('D', 'C')]
+</pre></td>
+</tr>
+<tr><td><span class="pass">pass </span></td>
+<td><pre>allMatches</pre></td>
+<td><pre>["A", "B", "C", "D", "E"]</pre></td>
+<td><pre>[('A', 'B'), ('A', 'C'), ('A', 'D'), ('A', 'E'), ('B', 'A'), ('B', 'C'), ('B', 'D'), ('B', 'E'), ('C', 'A'), ('C', 'B'), ('C', 'D'), ('C', 'E'), ('D', 'A'), ('D', 'B'), ('D', 'C'), ('D', 'E'), ('E', 'A'), ('E', 'B'), ('E', 'C'), ('E', 'D')]
+</pre></td>
+<td><pre>[('A', 'B'), ('A', 'C'), ('A', 'D'), ('A', 'E'), ('B', 'A'), ('B', 'C'), ('B', 'D'), ('B', 'E'), ('C', 'A'), ('C', 'B'), ('C', 'D'), ('C', 'E'), ('D', 'A'), ('D', 'B'), ('D', 'C'), ('D', 'E'), ('E', 'A'), ('E', 'B'), ('E', 'C'), ('E', 'D')]
+</pre></td>
+</tr>
+<tr><td><span class="pass">pass </span></td>
+<td><pre>allMatches</pre></td>
+<td><pre>["FCP", "SCP", "SLB"]</pre></td>
+<td><pre>[('FCP', 'SCP'), ('FCP', 'SLB'), ('SCP', 'FCP'), ('SCP', 'SLB'), ('SLB', 'FCP'), ('SLB', 'SCP')]
+</pre></td>
+<td><pre>[('FCP', 'SCP'), ('FCP', 'SLB'), ('SCP', 'FCP'), ('SCP', 'SLB'), ('SLB', 'FCP'), ('SLB', 'SCP')]
+</pre></td>
+</tr>
+</table>
+</div>
+<p class="header studentFiles">Submitted files</p>
+<div class="studentFiles">
+<p class="caption">allmatches.py:</p>
+<pre class="output">"""
+Escreva uma função que, dada uma lista de equipas de futebol,
+crie e devolva uma lista de todos os jogos que se podem fazer entre elas.
+Cada jogo deve ser representado por um tuplo de duas equipas distintas.
+Por exemplo:
+   allMatches(["FCP", "SCP", "SLB"])  -&gt;
+      [('FCP', 'SCP'), ('FCP', 'SLB'), ('SCP', 'FCP'), ..., ('SLB', 'SCP')]
+Com 3 equipas deve obter 6 jogos, com 4 equipas deve obter 12 jogos.
+"""
+
+def allMatches(teams):
+   assert len(teams) &gt;= 2, "Requires two or more teams!"
+   # Your code here...
+   lst=[]
+   
+   for home in teams:
+      for away in teams:
+         if home!=away:
+            lst.append((home,away))
+            
+   return lst
+            
+
+</pre>
+</div>
+<p class="header score">Score</p>
+<div class="score">
+<p class="score">5/5</p>
+</div>
+<div class="footnotes"><div class="footnote">2025-01-12T19:18:00Z</div>
+</div>
+</body></html>

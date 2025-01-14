@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="Submission" content="2QKXK9HI5K43Q2IJGE96B3U1Z"/>
+<meta name="Time" content="2025-01-06T23:52:48Z"/>
+<meta name="ID" content="ccmedian"/>
+<meta name="User" content="uner-cobu-fuke-mufu"/>
+<meta name="Problem" content="ext/2201141012cywkj1jic2l5jbzubq263n0p3"/>
+<meta name="Elapsed" content="2096 ms"/>
+<style type="text/css">
+.header {font-weight: bold; font-size: 1.2em; }
+.item {font-weight: bold;}
+.pass {color: green;}
+.fail {color: red;}
+.note {color: blue; font-weight: bold;}
+table.file td {padding-right: 1em; background: #FFF; }
+.linenumber {color: gray;}
+.footnote {font-size: 0.7em;}
+table {font-size: 0.9em;}
+td, th { background: #EEE; margin: 0.5em; padding: 0.25em;}
+table.output td {vertical-align: top;}
+div.footnotes { border-top: 1px solid gray; padding-top: 0.5em; }
+</style>
+<title>Report</title>
+</head>
+<body>
+<p class="header call">Calling with Arguments</p>
+<div class="call">
+<table class="run">
+<tr><th>&#160;</th><th>Name</th><th>Arguments</th><th>Actual</th><th>Expected</th></tr>
+<tr><td><span class="pass">pass </span></td>
+<td><pre>median</pre></td>
+<td><pre>[8, 4, 2, 4, 6]</pre></td>
+<td><pre>4
+</pre></td>
+<td><pre>4
+</pre></td>
+</tr>
+<tr><td><span class="pass">pass </span></td>
+<td><pre>median</pre></td>
+<td><pre>[8, 4, 2, 4, 6, 7]</pre></td>
+<td><pre>5.0
+</pre></td>
+<td><pre>5.0
+</pre></td>
+</tr>
+<tr><td><span class="pass">pass </span></td>
+<td><pre>median</pre></td>
+<td><pre>[1, 2]</pre></td>
+<td><pre>1.5
+</pre></td>
+<td><pre>1.5
+</pre></td>
+</tr>
+<tr><td><span class="pass">pass </span></td>
+<td><pre>median</pre></td>
+<td><pre>[1]</pre></td>
+<td><pre>1
+</pre></td>
+<td><pre>1
+</pre></td>
+</tr>
+<tr><td><span class="fail">fail </span></td>
+<td><pre>check</pre></td>
+<td><pre>[7, 3, 6, 2, 4]</pre></td>
+<td><pre>(3, [7, 3, 6, 2, 4])
+</pre></td>
+<td><pre>(4, [7, 3, 6, 2, 4])
+</pre></td>
+</tr>
+<tr><td><span class="pass">pass </span></td>
+<td><pre>check</pre></td>
+<td><pre>[8, 4, 2, 4, 6, 7]</pre></td>
+<td><pre>(5.0, [8, 4, 2, 4, 6, 7])
+</pre></td>
+<td><pre>(5.0, [8, 4, 2, 4, 6, 7])
+</pre></td>
+</tr>
+</table>
+</div>
+<p class="header studentFiles">Submitted files</p>
+<div class="studentFiles">
+<p class="caption">ccmedian.py:</p>
+<pre class="output">"""
+Complete a função para devolver a mediana da lista de valores lst.
+A função não deve modificar a lista.
+Se a lista tiver um número ímpar de valores,
+a mediana é o valor no meio da lista ordenada.
+Se a lista tiver um número par de valores,
+a mediana é a média dos dois valores no meio da lista ordenada.
+"""
+
+def median(lst):
+   assert len(lst) &gt; 0
+   a = sorted(lst)
+   if len(lst)%2!=0:
+      return a[len(lst)//2-1]
+   else: 
+      return (a[len(lst)//2]+a[(len(lst)//2-1)//2])/2
+   
+
+
+def check(lst):
+   backup = lst.copy()
+   m = median(lst)
+   return m, lst
+
+</pre>
+</div>
+<p class="header score">Score</p>
+<div class="score">
+<p class="score">5/6</p>
+</div>
+<div class="footnotes"><div class="footnote">2025-01-06T23:52:48Z</div>
+</div>
+</body></html>

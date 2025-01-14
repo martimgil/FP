@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: 11.0.17 (Eclipse Adoptium)
+
+Name: report.html
+SHA-256-Digest: D1rjgJVMdtP9JvBdVYayBkrREPYMgytfQqWKbl1mQds=
+
+Name: countdigits.py
+SHA-256-Digest: I8dzrJ3F0Euxdbcb3lkUAXHFqfnbbchGaecPA5qTvjk=
+
