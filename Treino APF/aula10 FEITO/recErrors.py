@@ -1,12 +1,11 @@
+
 # Calcula o factorial de n, baseado na recorrencia n! = n*(n-1)!.
 # Mas não termina!  Detete a causa e corrija o erro.
 def fact(n):
-    if n==0:
-        return 1
-    elif n>0:
+    if n>1:
         return n*fact(n-1)
-
-
+    else:
+        return n
 
 # Calcula o maximo divisor comum entre a e b.
 # Baseia-se no algoritmo de Euclides.

@@ -6,12 +6,13 @@ def genWords3(symbols):
 
 # Generates all length-n words with symbols taken from the given alphabet.
 def genWords(symbols, n):
-    if n==0:
-        return ['']
-    return [x+y for x in symbols for y in genWords(symbols, n-1)] 
-    
-    
-    
+    if n==1:
+        return list(symbols)
+    else:
+        return [x + y for x in symbols for y in genWords(symbols, n-1)]
+
+
+
 def main():
     lstA = genWords3("abc")
     print(lstA)

@@ -4,8 +4,7 @@
 # polynomial2(a,b,c) deve devolver uma função f tal que
 # f(x) seja o polinómio de segundo grau ax²+bx+c.
 def polynomial2(a, b, c):
-    return lambda x: a*x**2 - b*x + c
-
+    return lambda x: a*x**2+b*x+c
 
 # DESAFIO EXTRA:
 # Crie uma versão generalizada que cria polinómios de qualquer grau.
@@ -15,7 +14,6 @@ def polynomial2(a, b, c):
 # f(x) seja o polinómio a0*x**n + a1*x**(n-1) + ... + an.
 def polynomial(coefs):
     return lambda x: sum(coef * x ** (len(coefs) - 1- i) for i, coef in enumerate(coefs))
-
 
 
 def main():
@@ -37,4 +35,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

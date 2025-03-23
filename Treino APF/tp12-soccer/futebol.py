@@ -1,107 +1,104 @@
-
-def loadFile(fname):
-    lst = []
-    with open(fname, "r", encoding="utf-8") as f:
-        f.readline()
+def loadFile(fname, info):
+    with open(fname,"r", encoding="utf-8") as f:
+        info = []
         for line in f:
             line = line.strip().split(",")
-            lst.append(tuple(line))
-    return lst
+            info.append(tuple(line))
+    return info
 
-def rankCountry(country, lst):
-    results = []
-    for club in lst:
-        if club[2] == country:
-            results.append((club[1], club[0], club[3]))
-            print("{} {} {} ".format(club[1], club[0], club[3]))
-    return results
-
-def dic(lst):
-    results = {}
-    for club in lst:
-        if club[2] not in results:
-            results[club[2]]=list()
-
-        results[club[2]].append(club[1])
-    return results
-
-def search(lst, name):
-    result= []
-    for club in lst:
-        if club[1] == name:
-            result.append(club)
-
-    if len(result) ==0:
-        print("Sem resultados!")
-    else:
-        print(result)
-
-def mediumRank(lst):
-    countrys = []
-    clubs = dic(lst)
-    values = []
-    for club in lst:
-        if club[2] not in countrys:
-            countrys.append(club[2])
-
-    rankings = {}
-    for club in lst:
-        if club[2] not in rankings:
-            rankings[club[2]]=list()
-        rankings[club[2]].append(club[0])
-    for country in rankings:
-        sum = 0
-        ranks = rankings[country]
-        for rank in ranks:
-            sum += int(rank)
-        medium = sum/len(ranks)
-        values.append((country, medium))
-
-        print(country, medium)
-
-    values=sorted(values, key=lambda country: country[1])
-    print(values)
-
-
-
-
-def rank(lst):
-    max_club = max(lst, key=lambda a: int(a[4]))
-    return max_club
-
-def saveRankCountry(results, fname):
+def clubsByCountry(pais, info, fname):
     with open(fname, "w", encoding="utf-8") as f:
-        for club in results:
-            f.write("{} {} {}\n".format(club[0], club[1], club[2]))
+        for team in info:
+            if pais==team[2]:
+                print("{}   {}   {}".format(team[1], team[0], team[3]))
+                f.write("{}   {}   {}\n".format(team[1], team[0], team[3]))
+
+
+def dictByCountry(info):
+    dic = {}
+    for team in info:
+        pais = team[2]
+        if pais not in dic:
+            dic[pais] = set()
+        dic[pais].add(team[1])
+
+    return dic
+
+def bestRank(info):
+    best_team = [info[0][1], info[0][4]]
+    for team in info:
+        if team[4]>best_team[1]:
+            best_team = [team[1], team[4]]
+
+    return best_team
+
+def search(info, nome):
+    result = []
+    for team in info:
+        if nome==team[1]:
+            result.append(team)
+            print(team)
+    if len(result)==0:
+        print("Erro!")
+
+
+def mediumRank(info):
+    dic = {}
+    soma = 0
+    results = []
+
+    for team in info:
+        pais = team[2]
+        if pais not in dic:
+            dic[pais] = set()
+        dic[pais].add(team[0])
+
+    for pais in dic:
+        soma = 0
+        count = 0
+        for rank in dic[pais]:
+            soma+=int(rank[0])
+            count+=1
+        results.append([pais, soma/count])
+    results = sorted(results, key=lambda a:a[1])
+    for pais in results:
+        print("{} {}".format(pais[0], pais[1]))
+
 
 def main():
-    lst = []
+    info=[]
     while True:
-        print("Menu:")
-        print("0. Sair")
-        print("1. Carregar ficheiro")
-        print("2. Imprimir clubes de um país")
-        print("3. Criar dicionário de países e clubes")
-        print("4. Procurar clube pelo nome")
-        print("5. Determinar ranking médio de cada país")
-        op = int(input("Opção? "))
-        if op == 0:
-            break
-        elif op == 1:
-            fname = input("Ficheiro? ")
-            lst = loadFile(fname)
-        elif op == 2:
-            country = input("País? ")
-            rankCountry(country, lst)
-        elif op == 3:
-            print(dic(lst))
-        elif op == 4:
-            name = input("Nome? ")
-            search(lst, name)
-        elif op == 5:
-            mediumRank(lst)
+        print("0 - Abandonar")
+        print("1 - Ler ficheiro")
+        print("2 - Pesquisar por país")
+        print("3 - Ver clubes por país")
+        print("4 - Ver clube que mais subiu no ranking")
+        print("5 - Pesquisar clube")
+        print("6 - Determinar ranking médio")
 
-main()
+        op = int(input("Opção? "))
+
+        if op==0:
+            break
+        elif op==1:
+            loadFile("Soccer_Football_Clubs_Ranking.csv", info)
+        elif op==2:
+            pais = str(input("País? "))
+            clubsByCountry(pais, info, "rankCountry.txt")
+        elif op==3:
+            dictByCountry(info)
+        elif op==4:
+            print(bestRank(info))
+        elif op==5:
+            name = str(input("Nome? "))
+            search(info, name)
+        elif op==6:
+            mediumRank(info)
+
+
+
+
+
 
 
 main()

@@ -1,4 +1,3 @@
-
 # This function sorts a list (like list.sort)
 # using the insertion sort algorithm.
 # Modify it to accept a key= keyword argument that works like in list.sort.
@@ -47,4 +46,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
